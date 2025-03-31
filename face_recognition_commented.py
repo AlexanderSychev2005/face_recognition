@@ -15,10 +15,9 @@ def detect(gray, frame): # We create a function that takes as input the image in
         # eyes = eye_cascade.detectMultiScale(roi_gray, 1.1, 3) # We apply the detectMultiScale method to locate one or several eyes in the image.
         # for (ex, ey, ew, eh) in eyes: # For each detected eye:
         #     cv2.rectangle(roi_color,(ex, ey),(ex+ew, ey+eh), (0, 255, 0), 2) # We paint a rectangle around the eyes, but inside the referential of the face.
-        smiles = smile_cascade.detectMultiScale(roi_gray, 1.8, 7) # We apply the detectMultiScale method to locate one or several smiles in the image.
-        if len(smiles) > 0: # If we detect a smile:
-            ex, ey, ew, eh = smiles[0]
-            cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
+        smiles = smile_cascade.detectMultiScale(roi_gray, 1.7, 22)
+        for (sx, sy, sw, sh) in smiles:
+            cv2.rectangle(roi_color, (sx, sy), (sx + sw, sy + sh), (0, 0, 255), 2)
     return frame # We return the image with the detector rectangles.
 
 video_capture = cv2.VideoCapture(0) # We turn the webcam on.
